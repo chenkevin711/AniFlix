@@ -68,17 +68,18 @@ function App() {
 			<StyledApp>
 				<div className="App">
 					<Header />
-          <button className="theme_changer" role="button" onClick={() => themeToggler()}>Change Theme</button>
 					<div className="content-wrap">
-						<Sidebar 
-							topAnime={topAnime} />
-						<Sidebar2 
-							newAnime={newAnime} />
+					<button className="theme_changer" role="button" onClick={() => themeToggler()}>Change Theme</button>
 						<MainContent
 						HandleSearch={HandleSearch}
 						search={search}
 						SetSearch={SetSearch}
 						animeList={animeList} />
+						<Sidebar 
+							topAnime={topAnime} />
+						<Sidebar2 
+							newAnime={newAnime} />
+						
 					</div>
 				</div>
 			</StyledApp>
