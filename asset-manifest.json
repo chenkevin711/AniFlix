@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/AniFlex/static/css/main.13ade5d4.css",
-    "main.js": "/AniFlex/static/js/main.29e505f3.js",
+    "main.js": "/AniFlex/static/js/main.07a7a48e.js",
     "static/media/BebasNeue.otf": "/AniFlex/static/media/BebasNeue.2f99e8e59eadc04454dc.otf",
     "static/media/AniFlex.png": "/AniFlex/static/media/AniFlex.fcc7de797f38a571e792.png",
     "index.html": "/AniFlex/index.html",
     "main.13ade5d4.css.map": "/AniFlex/static/css/main.13ade5d4.css.map",
-    "main.29e505f3.js.map": "/AniFlex/static/js/main.29e505f3.js.map"
+    "main.07a7a48e.js.map": "/AniFlex/static/js/main.07a7a48e.js.map"
   },
   "entrypoints": [
     "static/css/main.13ade5d4.css",
-    "static/js/main.29e505f3.js"
+    "static/js/main.07a7a48e.js"
   ]
 }
