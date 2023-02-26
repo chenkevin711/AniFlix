@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/anime-database/static/css/main.13ade5d4.css",
-    "main.js": "/anime-database/static/js/main.ffa2c547.js",
-    "static/media/BebasNeue.otf": "/anime-database/static/media/BebasNeue.2f99e8e59eadc04454dc.otf",
-    "static/media/AniFlex.png": "/anime-database/static/media/AniFlex.fcc7de797f38a571e792.png",
-    "index.html": "/anime-database/index.html",
-    "main.13ade5d4.css.map": "/anime-database/static/css/main.13ade5d4.css.map",
-    "main.ffa2c547.js.map": "/anime-database/static/js/main.ffa2c547.js.map"
+    "main.css": "/AniFlex/static/css/main.13ade5d4.css",
+    "main.js": "/AniFlex/static/js/main.29e505f3.js",
+    "static/media/BebasNeue.otf": "/AniFlex/static/media/BebasNeue.2f99e8e59eadc04454dc.otf",
+    "static/media/AniFlex.png": "/AniFlex/static/media/AniFlex.fcc7de797f38a571e792.png",
+    "index.html": "/AniFlex/index.html",
+    "main.13ade5d4.css.map": "/AniFlex/static/css/main.13ade5d4.css.map",
+    "main.29e505f3.js.map": "/AniFlex/static/js/main.29e505f3.js.map"
   },
   "entrypoints": [
     "static/css/main.13ade5d4.css",
-    "static/js/main.ffa2c547.js"
+    "static/js/main.29e505f3.js"
   ]
 }
