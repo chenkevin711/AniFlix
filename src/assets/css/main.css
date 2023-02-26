@@ -126,9 +126,10 @@ header h1 strong {
   flex-wrap: wrap;
   margin-top: 32px;
   margin: 0px -8px 0px;
-  border: 1px solid #fff;
+  border: 2px solid #fff;
   max-height: 700px;
   overflow-y: auto;
+  border-radius: 5px;
 }
 .content-wrap main .anime-list .anime-card {
   -webkit-box-flex: 1;

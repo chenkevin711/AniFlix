@@ -30,70 +30,98 @@ function AnimeInfo(props) {
     }, [anime])
 
     return(<>
-        {anime !== undefined ? 
-            <div id='anime' style={{height: '100%'}}>
-                <AnimeInfoContainer>
-                    <div>
-                        <img 
-                            src={anime.images.jpg.image_url} 
-                            alt={anime.title}
-                        />
+        {anime !== undefined ?
+            <> 
+                <div id='anime'>
+                    <AnimeInfoContainer>
+                        <div>
+                            <img 
+                                src={anime.images.jpg.image_url} 
+                                alt={anime.title}
+                            />
+                        </div>
+                        
+                        
+                        <AnimeInfoDiv>
+                            <AnimeTitle>
+                                {anime.title}
+                            </AnimeTitle>
+
+                            <hr style={{margin: 0}}/>
+
+                            <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                                <div style={{display: 'flex', flexDirection: 'column', flex: 1}}>
+                                    <p style={{flex: 1}}>
+                                        Score: {anime.score}
+                                    </p>
+
+                                    <p style={{flex: 1}}>
+                                        Scored By: {anime.scored_by}
+                                    </p>
+                                </div>
+
+                                <div style={{display: 'flex', flexDirection: 'column', flex: 1}}>
+                                    <p style={{flex: 1}}>
+                                        Rank: {anime.rank}
+                                    </p>
+
+                                    <p style={{flex: 1}}>
+                                        Season: {anime.season !== null ? anime.season[0].toUpperCase() + anime.season.slice(1) : ''}
+                                    </p>
+                                </div>
+
+                                <div style={{display: 'flex', flexDirection: 'column', flex: 1}}>
+                                    <p style={{flex: 1}}>
+                                        Rating: {anime.rating}
+                                    </p>
+
+                                    <p style={{flex: 1}}>
+                                        Type: {anime.type}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <p>
+                                Synopsis: {anime.synopsis}
+                            </p>
+
+                            <div style={{display: 'flex'}}>
+                                <p style={{flex: 1}}>
+                                    Airing: {anime.aired.string}
+                                </p>
+
+                                <p style={{flex: 1}}>
+                                    Year: {anime.year}
+                                </p>
+                            </div>
+
+                            <div style={{display: 'flex'}}>
+                                <p style={{flex: 1}}>
+                                    Studio: {anime.studios[0].name}
+                                </p>
+
+                                <p style={{flex: 1}}>
+                                    Producers: {anime.producers.map((producer) => {
+                                        return producer['name']
+                                    }).toString()}
+                                </p>
+                            </div>
+                        </AnimeInfoDiv>
+                    </AnimeInfoContainer>
+                </div>
+                {anime.trailer.embed_url === null ?
+                    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <p style={{fontFamily: 'fantasy', fontSize: '30px'}}>No Trailer Found</p> 
                     </div>
                     
-                    
-                    <AnimeInfoDiv>
-                        <AnimeTitle>
-                            {anime.title}
-                        </AnimeTitle>
-
-                        <hr style={{margin: 0}}/>
-
-                        <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                            <p style={{flex: 1}}>
-                                Score: {anime.score}
-                            </p>
-
-                            <p style={{flex: 1, textAlign: 'center'}}>
-                                Scored By: {anime.scored_by}
-                            </p>
-
-                            <div  style={{flex: 1}}/>
-                        </div>
-
-                        <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                            <p style={{flex: 1}}>
-                                Rank: {anime.rank}
-                            </p>
-
-                            <p style={{flex: 1, textAlign: 'center'}}>
-                                Season: {anime.season}
-                            </p>
-
-                            <div style={{flex: 1}} />
-                        </div>
-
-                        
-
-                        <p>
-                            Synopsis: {anime.synopsis}
-                        </p>
-
-                        <p>
-                            Airing: {anime.aired.string}
-                        </p>
-
-                        <p>
-                            Studio: {anime.studios[0].name}
-                        </p>
-                    </AnimeInfoDiv>
-                </AnimeInfoContainer>
-
-                <iframe style={{height: '100%', width: '100%', padding: '10px'}} src={anime.trailer.embed_url} />
-            </div>
-            :
-            <>
-            <Spinner animation='border'/>
+                    :
+                    <iframe style={{height: '100%', width: '100%', padding: '10px'}} src={anime.trailer.embed_url} />
+                }
             </>
+            :
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <Spinner animation='border' style={{height: '400px', width: '400px'}}/>
+            </div>
         }
         
     </>)
@@ -104,13 +132,16 @@ export default AnimeInfo
 const AnimeInfoContainer = styled.div`
     display: flex;
     padding: 10px;
+    width: 100%;
 `;
 
 const AnimeInfoDiv = styled.div`
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
+    border: 2px solid white;
     margin-left: 5px;
+    padding: 0px 5px 0px;
+    width: 100%;
 
     p:not(:first-child) {
         font-family: Roboto;

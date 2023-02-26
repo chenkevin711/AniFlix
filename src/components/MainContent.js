@@ -6,18 +6,18 @@ import Sidebar2 from '../components/Sidebar2'
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-function MainContent({HandleSearch, search, SetSearch, animeList, themeToggler, topAnime, newAnime, randomTopAnime="https://www.youtube.com/embed/NSIzsFOfd8M?enablejsapi=1&wmode=opaque&autoplay=1"}) {
+function MainContent({HandleSearch, search, SetSearch, animeList, themeToggler, topAnime, newAnime, randomTopAnime="https://www.youtube.com/embed/NSIzsFOfd8M?enablejsapi=1&wmode=opaque&autoplay=1", airingAnime}) {
 	console.log('props', randomTopAnime)
 
 	const [randomAnime, setRandomAnime] = useState("https://www.youtube.com/embed/NSIzsFOfd8M?enablejsapi=1&wmode=opaque&autoplay=1")
 
 	useEffect(() => {
 		try {
-			setRandomAnime(topAnime[Math.floor(Math.random() * topAnime.length)].trailer.embed_url)
+			setRandomAnime(airingAnime[Math.floor(Math.random() * airingAnime.length)].trailer.embed_url)
 		} catch (error) {
 			console.log(error)
 		}
-	}, [topAnime])
+	}, [airingAnime])
 
 	return (
 		<main>
@@ -44,7 +44,12 @@ function MainContent({HandleSearch, search, SetSearch, animeList, themeToggler, 
 				</div>
 				
 				{animeList.length === 0 ? 
-					<iframe style={{height: '400px', width: '100%', padding: '10px'}} src={randomAnime} />
+					<div style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
+						<p style={{fontFamily: 'fantasy', fontSize: '30px', textAlign: 'center'}}>
+							Spotlight
+						</p>
+						<iframe style={{height: '650px', width: '100%', padding: '10px'}} src={randomAnime} />
+					</div>
 					// null
 					:
 

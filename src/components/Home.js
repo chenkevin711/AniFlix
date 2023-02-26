@@ -17,6 +17,7 @@ function Home(props) {
                         topAnime={props.topAnime} 
                         newAnime={props.newAnime}
                         randomTopAnime={props.randomAnime}
+                        airingAnime={props.airingAnime}
                         />
                     
                 </div>

@@ -18,6 +18,7 @@ function App() {
 	const [topAnime, SetTopAnime] = useState([]);
 	const [search, SetSearch] = useState("");
 	const [newAnime, SetNewAnime] = useState([]);
+	const [airingAnime, setAiringAnime] = useState([])
 
 	const GetTopAnime = async () => {
 		const temp = await fetch(`https://api.jikan.moe/v4/anime?limit=30&order_by=score&sort=desc`)
@@ -29,7 +30,7 @@ function App() {
 	const GetNewAnime = async () => {
 		const temp = await fetch(`https://api.jikan.moe/v4/anime?limit=30&order_by=score&sort=desc&status=airing`)
 			.then(res => res.json());
-
+		setAiringAnime(temp.data)
 		SetNewAnime(temp.data.slice(0, 5))
 	}
 
@@ -75,7 +76,7 @@ function App() {
 				<HashRouter>
 					<Header />
 					<Routes>
-						<Route path='/' element={<Home themeToggler={themeToggler} topAnime={topAnime} newAnime={newAnime} HandleSearch={HandleSearch} search={search} SetSearch={SetSearch} animeList={animeList} randomTopAnime={randomAnime}/>} />
+						<Route path='/' element={<Home themeToggler={themeToggler} topAnime={topAnime} newAnime={newAnime} HandleSearch={HandleSearch} search={search} SetSearch={SetSearch} animeList={animeList} randomTopAnime={randomAnime} airingAnime={airingAnime}/>} />
 							
 						<Route path='/anime/:mal_id' element={<AnimeInfo />}/>
 						
