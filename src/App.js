@@ -4,7 +4,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme, GlobalStyles } from "./themes.js";
 import Home from './components/Home';
 import AnimeInfo from './components/AnimeInfo';
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { Route, Routes, BrowserRouter, HashRouter } from 'react-router-dom';
 
 
 const StyledApp = styled.div`
@@ -72,7 +72,7 @@ function App() {
 		<ThemeProvider theme={theme === "light" ? darkTheme : darkTheme}>
 			<GlobalStyles />
 			<StyledApp id='styledapp'>
-				<BrowserRouter>
+				<HashRouter>
 					<Header />
 					<Routes>
 						<Route path='/' element={<Home themeToggler={themeToggler} topAnime={topAnime} newAnime={newAnime} HandleSearch={HandleSearch} search={search} SetSearch={SetSearch} animeList={animeList} randomTopAnime={randomAnime}/>} />
@@ -80,7 +80,7 @@ function App() {
 						<Route path='/anime/:mal_id' element={<AnimeInfo />}/>
 						
 					</Routes>
-				</BrowserRouter>
+				</HashRouter>
 			</StyledApp>
 		</ThemeProvider>
 	);
