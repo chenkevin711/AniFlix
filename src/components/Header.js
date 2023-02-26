@@ -1,10 +1,12 @@
 import React from 'react'
+import "../assets/fonts/BebasNeue.otf"
+import logo from '../assets/images/AniFlex.png'
 
 function Header() {
 	return (
-		<header>
-			<h1>The<strong>Anime</strong>Encylopedia</h1>
-		</header>
+		<div style={{display: 'flex', justifyContent: 'center'}}>
+			<img src={logo} alt="Anime Image"/>
+		</div>
 	)
 }
 

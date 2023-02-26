@@ -5,9 +5,20 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@font-face {
+  font-family: "BebasNeue";
+  src: url('../src/assets/fonts/BebasNeue.otf');
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url('../src/assets/fonts/Roboto-LightItalic.ttf');
 }

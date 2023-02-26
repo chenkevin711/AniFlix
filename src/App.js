@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import MainContent from './components/MainContent';
-import Sidebar2 from './components/Sidebar2';
 import styled, { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme, GlobalStyles } from "./themes.js";
+import Home from './components/Home';
+import AnimeInfo from './components/AnimeInfo';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
 
 const StyledApp = styled.div`
   color: ${(props) => props.theme.fontColor};
+  height: 100vh;
 `;
+
 
 function App() {
 	const [animeList, SetAnimeList] = useState([]);
@@ -18,17 +20,17 @@ function App() {
 	const [newAnime, SetNewAnime] = useState([]);
 
 	const GetTopAnime = async () => {
-		const temp = await fetch(`https://api.jikan.moe/v3/top/anime/1/bypopularity`)
+		const temp = await fetch(`https://api.jikan.moe/v4/anime?limit=30&order_by=score&sort=desc`)
 			.then(res => res.json());
-
-		SetTopAnime(temp.top.slice(0, 5));
+		console.log('temp', temp)
+		SetTopAnime(temp.data.slice(0, 5));
 	}
 
 	const GetNewAnime = async () => {
-		const temp = await fetch(`https://api.jikan.moe/v3/top/anime/1/airing`)
+		const temp = await fetch(`https://api.jikan.moe/v4/anime?limit=30&order_by=score&sort=desc&status=airing`)
 			.then(res => res.json());
 
-		SetNewAnime(temp.top.slice(0, 5))
+		SetNewAnime(temp.data.slice(0, 5))
 	}
 
 	const HandleSearch = e => {
@@ -38,10 +40,10 @@ function App() {
 	}
 
 	const FetchAnime = async (query) => {
-		const temp = await fetch(`https://api.jikan.moe/v3/search/anime?q=${query}&order_by=title&sort=asc&limit=30`)
+		const temp = await fetch(`https://api.jikan.moe/v4/anime?limit=30&q=${query}&order_by=score&sort=desc`)
 			.then(res => res.json());
 
-		SetAnimeList(temp.results);
+		SetAnimeList(temp.data);
 	}
 
 	const [theme, setTheme] = useState("light");
@@ -52,40 +54,35 @@ function App() {
 
 	useEffect(() => {
 		GetTopAnime();
-	}, []);
-
-	console.log(topAnime)
-
-	useEffect(() => {
 		GetNewAnime();
+		FetchRandomTopAnime();
 	}, []);
 
-	console.log(newAnime)
+	const [randomAnime, setRandomAnime] = useState()
+
+	const FetchRandomTopAnime = async () => {
+		const temp = await fetch(`https://api.jikan.moe/v4/anime?limit=30&order_by=score&sort=desc`)
+		.then(res => res.json());
+		setRandomAnime(temp.data[Math.floor(Math.random() * temp.data.length)].trailer.embed_url);
+	}
 	
+	console.log('random', randomAnime)
+
 	return (
-		<ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+		<ThemeProvider theme={theme === "light" ? darkTheme : darkTheme}>
 			<GlobalStyles />
-			<StyledApp>
-				<div className="App">
+			<StyledApp id='styledapp'>
+				<BrowserRouter>
 					<Header />
-					<div className="content-wrap">
-					<button className="theme_changer" role="button" onClick={() => themeToggler()}>Change Theme</button>
-						<MainContent
-						HandleSearch={HandleSearch}
-						search={search}
-						SetSearch={SetSearch}
-						animeList={animeList} />
-						<Sidebar 
-							topAnime={topAnime} />
-						<Sidebar2 
-							newAnime={newAnime} />
+					<Routes>
+						<Route path='/' element={<Home themeToggler={themeToggler} topAnime={topAnime} newAnime={newAnime} HandleSearch={HandleSearch} search={search} SetSearch={SetSearch} animeList={animeList} randomTopAnime={randomAnime}/>} />
+							
+						<Route path='/anime/:mal_id' element={<AnimeInfo />}/>
 						
-					</div>
-				</div>
+					</Routes>
+				</BrowserRouter>
 			</StyledApp>
 		</ThemeProvider>
-		
-		
 	);
 }
 

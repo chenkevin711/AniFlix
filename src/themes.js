@@ -13,5 +13,6 @@ export const darkTheme = {
 export const GlobalStyles = createGlobalStyle`
 	body {
 		background-color: ${(props) => props.theme.body};
+    height: 100vh;
 	}
 `;

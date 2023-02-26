@@ -23,37 +23,37 @@ header h1 strong {
   display: -ms-flexbox;
   display: flex;
 }
-.content-wrap aside {
-  -webkit-box-flex: 1;
-  -ms-flex: 1 1 250px;
-  flex: 1 1 250px;
-  max-width: 250px;
+.content-wrap div {
+  /* -webkit-box-flex: 1; */
+  /* -ms-flex: 1 1 250px; */
+  /* flex: 1 1 250px; */
+  /* max-width: 250px; */
   padding-right: 16px;
 }
-.content-wrap aside nav {
+.content-wrap div nav {
   padding-left: 16px;
   padding-right: 16px;
 }
-.content-wrap aside nav h3 {
+.content-wrap div nav h3 {
   font-size: 24px;
   margin-bottom: 16px;
 }
-.content-wrap aside nav a {
+.content-wrap div nav a {
   display: block;
   padding: 8px 16px;
   text-align: left;
   color: rgb(0, 0, 0);
   font-size: 16px;
   margin-bottom: 16px;
-  background-color: #eee;
+  background-color: #DB202C;
   border-radius: 999px;
   text-decoration: none;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
-.content-wrap aside nav a:hover {
-  background-color: #313131;
-  color: #aaa;
+.content-wrap div nav a:hover {
+  background-color: #fff;
+  color: #313131 !important;
 }
 .content-wrap main {
   -webkit-box-flex: 1;
@@ -89,29 +89,34 @@ header h1 strong {
   border: none;
   display: block;
   width: 100%;
-  max-width: 900px;
+  /* max-width: 900px; */
   padding: 16px;
   border-radius: 999px;
-  background-color: #eee;
+  background-color: #fff;
   -webkit-transition: 0.4s;
   transition: 0.4s;
+  color: #000 !important;
 }
 .content-wrap main .main-head .search-box input ::-webkit-input-placeholder {
-  color: #888;
+  /* color: #fff; */
+  color: #000 !important;
 }
 .content-wrap main .main-head .search-box input :-ms-input-placeholder {
-  color: #888;
+  /* color: #fff; */
+  color: #000 !important;
 }
 .content-wrap main .main-head .search-box input ::-ms-input-placeholder {
-  color: #888;
+  /* color: #fff; */
+  color: #000 !important;
 }
 .content-wrap main .main-head .search-box input ::placeholder {
-  color: #888;
+  /* color: #fff; */
+  color: #000 !important;
 }
 .content-wrap main .main-head .search-box input:focus,
 .content-wrap main .main-head .search-box input:valid {
-  background-color: #313131;
-  color: #fff;
+  background-color: #fff;
+  color: #000 !important;
 }
 .content-wrap main .anime-list {
   display: -webkit-box;
@@ -120,7 +125,10 @@ header h1 strong {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   margin-top: 32px;
-  margin: 32px -8px 0px;
+  margin: 0px -8px 0px;
+  border: 1px solid #fff;
+  max-height: 700px;
+  overflow-y: auto;
 }
 .content-wrap main .anime-list .anime-card {
   -webkit-box-flex: 1;
@@ -149,7 +157,7 @@ header h1 strong {
   transition: 0.4s;
 }
 .content-wrap main .anime-list .anime-card h3 {
-  color: #9e7575;
+  color: #fff;
 }
 .content-wrap main .anime-list .anime-card:hover figure img {
   -webkit-box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
