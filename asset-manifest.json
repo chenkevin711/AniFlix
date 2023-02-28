@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "/AniFlex/static/css/main.eb8ab46f.css",
-    "main.js": "/AniFlex/static/js/main.c789ab31.js",
+    "main.css": "/AniFlex/static/css/main.cab51eed.css",
+    "main.js": "/AniFlex/static/js/main.003a4c3d.js",
+    "static/media/Kamado-tanjiro.webp": "/AniFlex/static/media/Kamado-tanjiro.69831601f9d0dc4b90e7.webp",
     "static/media/BebasNeue.otf": "/AniFlex/static/media/BebasNeue.2f99e8e59eadc04454dc.otf",
+    "static/media/satoru-gojo.webp": "/AniFlex/static/media/satoru-gojo.d8b01c777246d9eb5d24.webp",
     "static/media/AniFlex.png": "/AniFlex/static/media/AniFlex.fcc7de797f38a571e792.png",
     "index.html": "/AniFlex/index.html",
-    "main.eb8ab46f.css.map": "/AniFlex/static/css/main.eb8ab46f.css.map",
-    "main.c789ab31.js.map": "/AniFlex/static/js/main.c789ab31.js.map"
+    "main.cab51eed.css.map": "/AniFlex/static/css/main.cab51eed.css.map",
+    "main.003a4c3d.js.map": "/AniFlex/static/js/main.003a4c3d.js.map"
   },
   "entrypoints": [
-    "static/css/main.eb8ab46f.css",
-    "static/js/main.c789ab31.js"
+    "static/css/main.cab51eed.css",
+    "static/js/main.003a4c3d.js"
   ]
 }
