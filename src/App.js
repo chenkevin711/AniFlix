@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme, GlobalStyles } from "./themes.js";
 import Home from './components/Home';
 import AnimeInfo from './components/AnimeInfo';
+import { useModalProvider, ModalProvider } from '../src/Providers/ModalProvider'
 import { Route, Routes, BrowserRouter, HashRouter } from 'react-router-dom';
 
 
@@ -19,6 +20,7 @@ function App() {
 	const [search, SetSearch] = useState("");
 	const [newAnime, SetNewAnime] = useState([]);
 	const [airingAnime, setAiringAnime] = useState([])
+	const { createModal, close } = useModalProvider()
 
 	const GetTopAnime = async () => {
 		const temp = await fetch(`https://api.jikan.moe/v4/anime?limit=30&order_by=score&sort=desc`)
@@ -74,13 +76,15 @@ function App() {
 			<GlobalStyles />
 			<StyledApp id='styledapp'>
 				<HashRouter>
-					<Header />
-					<Routes>
-						<Route path='/' element={<Home themeToggler={themeToggler} topAnime={topAnime} newAnime={newAnime} HandleSearch={HandleSearch} search={search} SetSearch={SetSearch} animeList={animeList} randomTopAnime={randomAnime} airingAnime={airingAnime}/>} />
+					<ModalProvider>
+						<Header />
+						<Routes>
+							<Route path='/' element={<Home themeToggler={themeToggler} topAnime={topAnime} newAnime={newAnime} HandleSearch={HandleSearch} search={search} SetSearch={SetSearch} animeList={animeList} randomTopAnime={randomAnime} airingAnime={airingAnime}/>} />
+								
+							<Route path='/anime/:mal_id' element={<AnimeInfo />}/>
 							
-						<Route path='/anime/:mal_id' element={<AnimeInfo />}/>
-						
-					</Routes>
+						</Routes>
+					</ModalProvider>
 				</HashRouter>
 			</StyledApp>
 		</ThemeProvider>
