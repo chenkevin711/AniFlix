@@ -98,9 +98,15 @@ export const ModalProvider = (props) => {
     useEffect(() => {
         console.log('UseEffect', openModals)
     }, [openModals])
+
+    const [account, setAccount] = useState({})
+
+    function Login(data) {
+        setAccount(data)
+    }
     
     return (
-        <ModalContext.Provider value={{ createModal, close }}>
+        <ModalContext.Provider value={{ createModal, close, account, Login }}>
             {props.children}
             {openModals.length > 0 ? 
             <div style={{position: 'fixed', zIndex: '1000', inset: 0, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>

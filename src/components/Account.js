@@ -3,63 +3,72 @@ import gojo from '../assets/images/satoru-gojo.webp'
 import * as MdIcons from 'react-icons/md'
 import styled from 'styled-components';
 import CreateAccount from './CreateAccount';
+import axios from "axios"
+import { format } from 'date-fns';
 import { useModalProvider } from '../Providers/ModalProvider';
+import FireBase from '../FireBase';
 
-function Account() {
-    const { createModal, close } = useModalProvider()
+const baseURL = "http://127.0.0.1:6796"
 
-    function renderCreateAccountModal() {
-        createModal(<CreateAccount 
-            escClose={true}
-			clickOutsideClose={true}
-			style={{height: '500px', width: '800px'}}
-        />)
+function AccountInfo() {
+    const { createModal, close, account, Login } = useModalProvider()
+
+    async function PostData(endpoint, body) {
+        const res = await axios.post(`${baseURL}/${endpoint}`, body)
+        const data = await res.data
+        Login(data)
+        return data
     }
 
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [profilePicture, setProfilePicture] = useState()
+
     return (
-        <>
-            <div style={{display: 'flex', height: '100%'}}>
-                <img src={gojo} style={{height: 'auto', width: 'auto', maxHeight: '500px', maxWidth: '300px', marginBottom: 'auto', marginTop: 'auto'}}/>
-                <div id='LoginDiv' style={{display: 'flex', flexDirection: 'column', paddingRight: '10px', width: '100%'}}>
-                    <p style={{fontSize: '40px', fontFamily: 'sans-serif', margin: 0}}>
-                        Login
-                    </p>
-                    <p style={{color: '#6d6d6d'}}>
-                        Welcome Back!
-                    </p>
-                    <div style={{border: '1px solid black', background: 'white', display: 'flex', alignItems: 'center', borderRadius: '5px', marginBottom: '10px', width: '100%'}}>
-                        <MdIcons.MdAccountCircle size={30} style={{color: 'black'}}/>
-                        <AccountInput type='text' style={{border: 'none', background: 'transparent', width: '100%', height: '50px', fontSize: '25px'}}
-                        placeholder='Email...'
-                        />
-                    </div>
-
-                    <div style={{border: '1px solid black', background: 'white', display: 'flex', alignItems: 'center', borderRadius: '5px',marginBottom: '10px', width: '100%'}}>
-                        <MdIcons.MdOutlineLock size={30} style={{color: 'black'}}/>
-                        <AccountInput type='text' style={{border: 'none', background: 'transparent', width: '100%', height: '50px', fontSize: '25px'}}
-                        placeholder='Password...'
-                        />
-                    </div>
-                    
-                    <SubmitButton>
-                        <p>
-                            Submit
-                        </p>
-                    </SubmitButton>
-
-                    <p>
-                        Don't have an account? 
-                        <strong style={{cursor: 'pointer', color: '#DB202C', marginLeft: '5px'}} onClick={() => renderCreateAccountModal()}>
-                            Register
-                        </strong>
-                    </p>
-                </div>
+        <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
+            <div style={{border: '4px solid #DB202C', borderRadius: '50px'}}>
+                {profilePicture ? 
+                    <img src={profilePicture} alt='profile' />
+                    :
+                    <MdIcons.MdAccountCircle size={60}/>
+                }
             </div>
-        </>
+
+            <p style={{color: '#6d6d6d'}}>
+                Join Date
+            </p>
+            <div style={{border: '1px solid black', background: 'white', display: 'flex', alignItems: 'center', borderRadius: '5px', marginBottom: '10px', width: '100%'}}>
+                <AccountInput disabled type='text' style={{border: 'none', background: 'transparent', width: '100%', height: '50px', fontSize: '25px'}}
+                defaultValue={account.created_at}
+                onChange={(e) => setEmail((v) => (e.target.validity.valid ? e.target.value : v))}
+                />
+            </div>
+
+            <p style={{color: '#6d6d6d'}}>
+                Email Address
+            </p>
+            <div style={{border: '1px solid black', background: 'white', display: 'flex', alignItems: 'center', borderRadius: '5px', marginBottom: '10px', width: '100%'}}>
+                <AccountInput type='text' style={{border: 'none', background: 'transparent', width: '100%', height: '50px', fontSize: '25px'}}
+                defaultValue={account.email}
+                onChange={(e) => setEmail((v) => (e.target.validity.valid ? e.target.value : v))}
+                />
+            </div>
+
+            <p style={{color: '#6d6d6d'}}>
+                Username
+            </p>
+            <div style={{border: '1px solid black', background: 'white', display: 'flex', alignItems: 'center', borderRadius: '5px', marginBottom: '10px', width: '100%'}}>
+                <AccountInput type='text' style={{border: 'none', background: 'transparent', width: '100%', height: '50px', fontSize: '25px'}}
+                defaultValue={account.username}
+                onChange={(e) => setEmail((v) => (e.target.validity.valid ? e.target.value : v))}
+                />
+            </div>
+            
+        </div>
     )
 }
 
-export default Account;
+export default AccountInfo;
 
 const AccountInput = styled.input`
     :focus {

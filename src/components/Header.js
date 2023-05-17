@@ -1,6 +1,6 @@
 import React from 'react'
 import "../assets/fonts/BebasNeue.otf"
-import logo from '../assets/images/AniFlex.png'
+import logo from '../assets/images/AniFlix.png'
 
 function Header() {
 	return (

@@ -1,24 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import tanjiro from '../assets/images/Kamado-tanjiro.webp'
+import gojo from '../assets/images/satoru-gojo.webp'
 import * as MdIcons from 'react-icons/md'
 import styled from 'styled-components';
-import Account from './Login';
+import CreateAccount from './CreateAccount';
+import axios from "axios"
+import { format } from 'date-fns';
 import { useModalProvider } from '../Providers/ModalProvider';
-import axios from 'axios';
 
 const baseURL = "http://127.0.0.1:6796"
 
-function CreateAccount() {
+function Account() {
     const { createModal, close, account, Login } = useModalProvider()
-    console.log(createModal)
 
-    function renderLoginModal() {
-        createModal(<Account 
+    function renderCreateAccountModal() {
+        createModal(<CreateAccount 
             escClose={true}
 			clickOutsideClose={true}
 			style={{height: '500px', width: '800px'}}
         />)
     }
+
+    // const PostData = async (endpoint, body) => {
+        
+    // }
 
     async function PostData(endpoint, body) {
         const res = await axios.post(`${baseURL}/${endpoint}`, body)
@@ -31,71 +35,54 @@ function CreateAccount() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [confirmPass, setConfirmPass] = useState('')
-    const [username, setUsername] = useState('')
 
-    async function CreateAccount() {
+    async function Sign_In() {
         let body = {
             'email': email,
-            'password': password,
-            'username': username
+            'password': password
         }
-        const data = await PostData('create_account', body)
-
+        const data = await PostData('sign_in', body)
+        console.log('data', data)
         close()
     }
 
     return (
         <>
             <div style={{display: 'flex', height: '100%'}}>
-                <img src={tanjiro} style={{height: 'auto', width: 'auto', maxHeight: '500px', maxWidth: '300px', marginBottom: 'auto', marginTop: 'auto'}}/>
-                <div id='CreateAccountDiv' style={{display: 'flex', flexDirection: 'column', paddingRight: '10px', width: '100%'}}>
+                <img src={gojo} style={{height: 'auto', width: 'auto', maxHeight: '500px', maxWidth: '300px', marginBottom: 'auto', marginTop: 'auto'}}/>
+                <div id='LoginDiv' style={{display: 'flex', flexDirection: 'column', paddingRight: '10px', width: '100%'}}>
                     <p style={{fontSize: '40px', fontFamily: 'sans-serif', margin: 0}}>
-                        Register
+                        Login
                     </p>
                     <p style={{color: '#6d6d6d'}}>
-                        Create an account to save your favorite anime!
+                        Welcome Back!
                     </p>
                     <div style={{border: '1px solid black', background: 'white', display: 'flex', alignItems: 'center', borderRadius: '5px', marginBottom: '10px', width: '100%'}}>
-                        <MdIcons.MdMail size={30} style={{color: 'black'}}/>
-                        <AccountInput type='text' style={{border: 'none', background: 'transparent', width: '100%', height: '50px', fontSize: '25px'}}
-                        placeholder='Email'
-                        />
-                    </div>
-
-                    <div style={{border: '1px solid black', background: 'white', display: 'flex', alignItems: 'center', borderRadius: '5px',marginBottom: '10px', width: '100%'}}>
                         <MdIcons.MdAccountCircle size={30} style={{color: 'black'}}/>
                         <AccountInput type='text' style={{border: 'none', background: 'transparent', width: '100%', height: '50px', fontSize: '25px'}}
-                        placeholder='Username'
+                        placeholder='Email...'
+                        onChange={(e) => setEmail((v) => (e.target.validity.valid ? e.target.value : v))}
                         />
                     </div>
 
                     <div style={{border: '1px solid black', background: 'white', display: 'flex', alignItems: 'center', borderRadius: '5px',marginBottom: '10px', width: '100%'}}>
                         <MdIcons.MdOutlineLock size={30} style={{color: 'black'}}/>
                         <AccountInput type='text' style={{border: 'none', background: 'transparent', width: '100%', height: '50px', fontSize: '25px'}}
-                        placeholder='Password'
-                        />
-                    </div>
-
-                    <div style={{border: '1px solid black', background: 'white', display: 'flex', alignItems: 'center', borderRadius: '5px',marginBottom: '10px', width: '100%'}}>
-                        <MdIcons.MdOutlineLock size={30} style={{color: 'black'}}/>
-                        <AccountInput type='text' style={{border: 'none', background: 'transparent', width: '100%', height: '50px', fontSize: '25px'}}
-                        placeholder='Password Confirmation'
+                        placeholder='Password...'
+                        onChange={(e) => setPassword((v) => (e.target.validity.valid ? e.target.value : v))}
                         />
                     </div>
                     
-                    <SubmitButton>
+                    <SubmitButton onClick={() => Sign_In()}>
                         <p>
-                            Register
+                            Submit
                         </p>
                     </SubmitButton>
 
                     <p>
-                        Already have an have an account? 
-                        <strong style={{cursor: 'pointer', color: '#DB202C', marginLeft: '5px'}}
-                        onClick={() => renderLoginModal()}
-                        >
-                            Sign In
+                        Don't have an account? 
+                        <strong style={{cursor: 'pointer', color: '#DB202C', marginLeft: '5px'}} onClick={() => renderCreateAccountModal()}>
+                            Register
                         </strong>
                     </p>
                 </div>
@@ -104,7 +91,7 @@ function CreateAccount() {
     )
 }
 
-export default CreateAccount;
+export default Account;
 
 const AccountInput = styled.input`
     :focus {

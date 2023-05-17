@@ -6,13 +6,14 @@ import Sidebar2 from '../components/Sidebar2'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import * as MdIcons from 'react-icons/md'
-import Account from './Account';
+import Account from './Login';
 import { useModalProvider } from '../Providers/ModalProvider';
+import AccountInfo from './Account';
 
 function MainContent({HandleSearch, search, SetSearch, animeList, themeToggler, topAnime, newAnime, randomTopAnime="https://www.youtube.com/embed/NSIzsFOfd8M?enablejsapi=1&wmode=opaque&autoplay=1", airingAnime}) {
 	console.log('props', randomTopAnime)
 
-	const { createModal, close } = useModalProvider()
+	const { createModal, close, account } = useModalProvider()
 
 	const [randomAnime, setRandomAnime] = useState("https://www.youtube.com/embed/NSIzsFOfd8M?enablejsapi=1&wmode=opaque&autoplay=1")
 
@@ -25,12 +26,27 @@ function MainContent({HandleSearch, search, SetSearch, animeList, themeToggler, 
 	}, [airingAnime])
 
 	function renderAccountModal() {
-		createModal(<Account 
-			escClose={true}
-			clickOutsideClose={true}
-			style={{height: '500px', width: '800px'}}
-		/>)
+		console.log('logged in', account)
+		if (account === {}) {
+			createModal(<AccountInfo 
+				escClose={true}
+				clickOutsideClose={true}
+				style={{height: '500px', width: '800px'}}
+			/>)
+		} else {
+			createModal(<Account 
+				escClose={true}
+				clickOutsideClose={true}
+				style={{height: '500px', width: '800px'}}
+			/>)
+		}
 	}
+
+	function renderAccountInfo() {
+		
+	}
+
+	console.log('account', account)
 
 	return (
 		<main>
