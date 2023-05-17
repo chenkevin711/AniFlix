@@ -62,7 +62,7 @@ function MainContent({HandleSearch, search, SetSearch, animeList, themeToggler, 
 						newAnime={newAnime} />
 				</div>
 				
-				{animeList.length === 0 ? 
+				{randomAnime ? 
 					<div style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
 						<p style={{fontFamily: 'fantasy', fontSize: '30px', textAlign: 'center'}}>
 							Spotlight

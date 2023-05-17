@@ -11,6 +11,19 @@ import { Route, Routes, BrowserRouter, HashRouter } from 'react-router-dom';
 const StyledApp = styled.div`
   color: ${(props) => props.theme.fontColor};
   height: 100vh;
+  overflow: auto;
+
+  scrollbar-width: thin;
+	::-webkit-scrollbar {
+		display: block;
+		width: 5px;
+		color: black;
+	}
+	::-webkit-scrollbar-track {
+		background: #BEC4CF;
+		width: 5px;
+		border-radius: 2px;
+	}
 `;
 
 
