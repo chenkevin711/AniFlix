@@ -14,8 +14,6 @@ function AnimeCard({anime}) {
 
 	async function navigateToAnimeInfo() {
 		await FetchAnime()
-		console.log(anime1)
-		
 	}
 
 	return (

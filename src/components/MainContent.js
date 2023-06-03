@@ -9,12 +9,12 @@ import * as MdIcons from 'react-icons/md'
 import Account from './Account';
 import { useModalProvider } from '../Providers/ModalProvider';
 
-function MainContent({HandleSearch, search, SetSearch, animeList, themeToggler, topAnime, newAnime, randomTopAnime="https://www.youtube.com/embed/NSIzsFOfd8M?enablejsapi=1&wmode=opaque&autoplay=1", airingAnime}) {
+function MainContent({HandleSearch, search, SetSearch, animeList, themeToggler, topAnime, newAnime, randomTopAnime, airingAnime}) {
 	console.log('props', randomTopAnime)
 
 	const { createModal, close } = useModalProvider()
 
-	const [randomAnime, setRandomAnime] = useState("https://www.youtube.com/embed/NSIzsFOfd8M?enablejsapi=1&wmode=opaque&autoplay=1")
+	const [randomAnime, setRandomAnime] = useState()
 
 	useEffect(() => {
 		try {
@@ -62,7 +62,7 @@ function MainContent({HandleSearch, search, SetSearch, animeList, themeToggler, 
 						newAnime={newAnime} />
 				</div>
 				
-				{randomAnime ? 
+				{randomAnime && search === "" ? 
 					<div style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
 						<p style={{fontFamily: 'fantasy', fontSize: '30px', textAlign: 'center'}}>
 							Spotlight
