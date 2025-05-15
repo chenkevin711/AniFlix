@@ -36,14 +36,14 @@ function App() {
 	const { createModal, close } = useModalProvider()
 
 	const GetTopAnime = async () => {
-		const temp = await fetch(`https://api.jikan.moe/v4/anime?limit=30&order_by=score&sort=desc`)
+		const temp = await fetch(`https://api.jikan.moe/v4/anime?limit=25&order_by=score&sort=desc`)
 			.then(res => res.json());
 		console.log('temp', temp)
 		SetTopAnime(temp.data.slice(0, 5));
 	}
 
 	const GetNewAnime = async () => {
-		const temp = await fetch(`https://api.jikan.moe/v4/anime?limit=30&order_by=score&sort=desc&status=airing`)
+		const temp = await fetch(`https://api.jikan.moe/v4/anime?limit=25&order_by=score&sort=desc&status=airing`)
 			.then(res => res.json());
 		setAiringAnime(temp.data)
 		SetNewAnime(temp.data.slice(0, 5))
@@ -56,7 +56,7 @@ function App() {
 	}
 
 	const FetchAnime = async (query) => {
-		const temp = await fetch(`https://api.jikan.moe/v4/anime?limit=30&q=${query}&order_by=score&sort=desc`)
+		const temp = await fetch(`https://api.jikan.moe/v4/anime?limit=25&q=${query}&order_by=score&sort=desc`)
 			.then(res => res.json());
 
 		SetAnimeList(temp.data);
@@ -77,7 +77,7 @@ function App() {
 	const [randomAnime, setRandomAnime] = useState()
 
 	const FetchRandomTopAnime = async () => {
-		const temp = await fetch(`https://api.jikan.moe/v4/anime?limit=30&order_by=score&sort=desc`)
+		const temp = await fetch(`https://api.jikan.moe/v4/anime?limit=25&order_by=score&sort=desc`)
 		.then(res => res.json());
 		setRandomAnime(temp.data[Math.floor(Math.random() * temp.data.length)].trailer.embed_url);
 	}
